@@ -12,6 +12,7 @@ require 'active_record/connection_adapters/sqlserver/core_ext/explain_subscriber
 require 'active_record/connection_adapters/sqlserver/core_ext/relation'
 require 'active_record/connection_adapters/sqlserver/database_limits'
 require 'active_record/connection_adapters/sqlserver/database_statements'
+require 'active_record/connection_adapters/sqlserver/database_tasks'
 require 'active_record/connection_adapters/sqlserver/errors'
 require 'active_record/connection_adapters/sqlserver/schema_cache'
 require 'active_record/connection_adapters/sqlserver/schema_creation'
@@ -23,6 +24,7 @@ require 'active_record/connection_adapters/sqlserver/utils'
 
 require 'active_record/sqlserver_base'
 require 'active_record/connection_adapters/sqlserver_column'
+require 'active_record/tasks/sqlserver_database_tasks'
 
 module ActiveRecord
   module ConnectionAdapters
@@ -33,6 +35,7 @@ module ActiveRecord
       include Sqlserver::SchemaStatements
       include Sqlserver::DatabaseLimits
       include Sqlserver::Errors
+      include SQLServer::DatabaseTasks
 
       VERSION                     = File.read(File.expand_path('../../../../VERSION', __FILE__)).strip
       ADAPTER_NAME                = 'SQLServer'.freeze
