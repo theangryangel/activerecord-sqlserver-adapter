@@ -103,7 +103,7 @@ AND name NOT IN ('dtproperties')").each do |row|
           end
 
           # Export stored procedures definitions
-          connection.select_all("select object_definition(object_id) as routine_definition from sys.all_objects where type = 'P' and is_ms_shipped = 0").each do |row|
+          connection.select_all("select object_definition(object_id) as definition from sys.all_objects where type = 'P' and is_ms_shipped = 0").each do |row|
             file.puts "#{row['definition']}\r\nGO\r\n"
           end
         }
